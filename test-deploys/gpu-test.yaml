@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: cuda-vectoradd-set
+spec:
+  replicas: 7
+  selector:
+    matchLabels:
+      app: cuda-vectoradd-set
+  template:
+    metadata:
+      labels:
+        app: cuda-vectoradd-set
+    spec:
+      runtimeClassName: nvidia
+      containers:
+      - name: cuda-vectoradd
+        image: "nvcr.io/nvidia/k8s/cuda-sample:vectoradd-cuda11.7.1-ubi8"
+        resources:
+          limits:
+            nvidia.com/mig-1g.10gb: 1

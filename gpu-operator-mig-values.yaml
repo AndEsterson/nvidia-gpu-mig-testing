@@ -1,0 +1,24 @@
+driver:
+  repository: ghcr.io/andesterson/nvidia
+  version: "550.90.07"
+
+toolkit:
+  version: 'v1.17.2-ubuntu20.04'
+  env:
+    - name: CONTAINERD_CONFIG
+      value: "/etc/containerd/config.toml.tmpl"
+    - name: CONTAINERD_SOCKET
+      value: "/run/k3s/containerd/containerd.sock"
+    - name: CONTAINERD_RUNTIME_CLASS
+      value: "nvidia"
+    - name: CONTAINERD_SET_AS_DEFAULT
+      value: "true"
+
+mig:
+  strategy: mixed
+migManager:
+  config:
+    name: nvidia-mig-config
+devicePlugin:
+  config:
+    name: nvidia-time-slicing-config
