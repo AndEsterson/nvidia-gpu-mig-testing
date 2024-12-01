@@ -2,7 +2,7 @@ notebooks:
   - name: example
   - name: example-2
   - name: example-large
-    ingressSubdomain: "aedownstream" 
+    ingressSubdomain: "example-alternate-subdomain" 
     resourceLimits:
       nvidia.com/mig-1g.10gb: 2
 
