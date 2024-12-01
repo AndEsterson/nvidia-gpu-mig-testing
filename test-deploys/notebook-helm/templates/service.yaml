@@ -1,0 +1,16 @@
+{{- range $notebook := .Values.notebooks }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: notebook-service-{{ .name }}
+  labels:
+    app.kubernetes.io/name: notebook-pod-{{ .name }}
+spec:
+  selector:
+    app.kubernetes.io/name: notebook-pod-{{ .name }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8888
+---
+{{- end }}

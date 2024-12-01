@@ -1,0 +1,20 @@
+{{- range $notebook := .Values.notebooks }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: notebook-pod-{{ .name }}
+  labels:
+    app.kubernetes.io/name: notebook-pod-{{ .name }}
+spec:
+  containers:
+  - name: notebook-pod-{{ .name }}
+    image: {{ default $.Values.defaults.image .image }}
+    ports:
+    - containerPort: 8888
+    {{- with default $.Values.defaults.resourceLimits .resourceLimits }}
+    resources:
+      limits:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+---
+{{- end }}

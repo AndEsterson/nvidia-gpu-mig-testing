@@ -1,0 +1,23 @@
+{{- range $notebook := .Values.notebooks }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notebook-ingress-{{ .name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    app.kubernetes.io/name: notebook-pod-{{ .name }}
+spec:
+  rules:
+    - host: {{ default .name .ingressSubdomain }}.{{ $.Values.ingressHostname }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: notebook-service-{{ .name }}
+                port:
+                  number: 80
+---
+{{- end }}
