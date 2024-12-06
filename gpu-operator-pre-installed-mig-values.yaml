@@ -1,0 +1,32 @@
+driver:
+  enabled: false
+toolkit:
+  enabled: false
+
+validator:
+    driver:
+      env:
+      - name: DISABLE_DEV_CHAR_SYMLINK_CREATION
+        value: "true"
+devicePlugin:
+    enabled: true
+    config:
+      name: nvidia-time-slicing-config
+    env:
+    - name: PASS_DEVICE_SPECS
+      value: "false"
+    - name: FAIL_ON_INIT_ERROR
+      value: "true"
+    - name: DEVICE_LIST_STRATEGY
+      value: envvar
+    - name: DEVICE_ID_STRATEGY
+      value: uuid
+    - name: NVIDIA_VISIBLE_DEVICES
+      value: all
+    - name: NVIDIA_DRIVER_CAPABILITIES
+      value: "compat32, compute, utility"
+mig:
+  strategy: mixed
+migManager:
+  config:
+    name: nvidia-mig-config
