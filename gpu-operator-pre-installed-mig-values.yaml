@@ -10,8 +10,6 @@ validator:
         value: "true"
 devicePlugin:
     enabled: true
-    config:
-      name: nvidia-time-slicing-config
     env:
     - name: PASS_DEVICE_SPECS
       value: "false"

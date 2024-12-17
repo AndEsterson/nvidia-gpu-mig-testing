@@ -19,6 +19,3 @@ mig:
 migManager:
   config:
     name: nvidia-mig-config
-devicePlugin:
-  config:
-    name: nvidia-time-slicing-config
